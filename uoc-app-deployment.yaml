@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uoc-app-deployment
+spec:
+  replicas: 2 # El número de instancias de tu aplicación para alta disponibilidad
+  selector:
+    matchLabels:
+      app: uoc-app
+  template:
+    metadata:
+      labels:
+        app: uoc-app
+    spec:
+      containers:
+      - name: uoc-app-container
+        image: uoc-app:latest
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uoc-app-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: uoc-app
