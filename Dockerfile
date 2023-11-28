@@ -1,0 +1,22 @@
+# Etapa de construcción
+FROM golang:alpine AS build-env
+
+WORKDIR /app
+
+# Copiamos los archivos y compilamos
+COPY . .
+RUN go build -o main .
+
+# Etapa final
+FROM alpine
+
+WORKDIR /app
+
+# Copiamos el binario desde la etapa de construcción
+COPY --from=build-env /app/main .
+
+# Exponer el puerto 8080
+EXPOSE 8080
+
+# Ejecutar la aplicación
+CMD ["./main"]
