@@ -3,6 +3,9 @@ FROM golang:alpine AS build-env
 
 WORKDIR /app
 
+# Inicializar Go module
+RUN go mod init uoc-app
+
 # Copiamos los archivos y compilamos
 COPY . .
 RUN go build -o main .
