@@ -15,7 +15,7 @@ WORKDIR /app
 # Copiamos el binario desde la etapa de construcción
 COPY --from=build-env /app/main .
 
-# Exponer el puerto 8080
+# Exponer el puerto 8081
 EXPOSE 8080
 
 # Ejecutar la aplicación
