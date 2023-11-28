@@ -16,7 +16,7 @@ WORKDIR /app
 COPY --from=build-env /app/main .
 
 # Exponer el puerto 8081
-EXPOSE 8080
+EXPOSE 8081
 
 # Ejecutar la aplicación
 CMD ["./main"]
